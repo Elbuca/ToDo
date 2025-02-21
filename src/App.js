@@ -25,10 +25,10 @@ import './App.css';
 ]*/
 
 
-
+const API_URL = 'https://todo-u9t2.onrender.com';
 
 function App() { 
-  const API_URL = 'https://todo-u9t2.onrender.com';
+  
   const [todoState, setTodoState] = React.useState([]);
   React.useEffect(() => {
     const fetchTasks = async () => {
