@@ -28,11 +28,12 @@ import './App.css';
 
 
 function App() { 
+  const API_URL = 'https://todo-u9t2.onrender.com';
   const [todoState, setTodoState] = React.useState([]);
   React.useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:8000/tasks/');
+        const response = await fetch(`${API_URL}/tasks/`);
         const data = await response.json();
         setTodoState(data);
       } catch (error) {
@@ -46,7 +47,7 @@ function App() {
   
   const actualizaTareas = async (newTaskTitle) => {
     try {
-      const response = await fetch('http://127.0.0.1:8000/tasks/', {
+      const response = await fetch(`${API_URL}/tasks/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -67,7 +68,7 @@ function App() {
 
   const deleteTodo = async (id) => {
     try {
-      await fetch(`http://127.0.0.1:8000/tasks/${id}`, {
+      await fetch(`${API_URL}/tasks/${id}`, {
         method: 'DELETE',
       });
   
@@ -85,7 +86,7 @@ function App() {
     const updatedTask = { ...task, completed: !task.completed };
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/tasks/${task.id}`, {
+      const response = await fetch(`${API_URL}/tasks/${task.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedTask),
