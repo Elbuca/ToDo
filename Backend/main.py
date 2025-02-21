@@ -29,7 +29,7 @@ def get_db():
 
 @app.get("/tasks/", response_model=list[schemas.TaskResponse])
 def read_tasks(db: Session = Depends(get_db)):
-    return db.query(models.Task).all()
+    return db.query(models.Task).order_by(models.Task.id.asc()).all()
 
 
 @app.post("/tasks/", response_model=schemas.TaskResponse)
